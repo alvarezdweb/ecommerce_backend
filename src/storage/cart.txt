@@ -1,0 +1,1 @@
+[{"id":1,"timestamp":1624893750399,"product":{"id":"114","nombre":"notebook","descripcion":"descripcion1","codigo":12345,"foto":"foto.jpg","precio":100,"stock":20}},{"id":3,"timestamp":1624893883171,"product":{"id":"112","nombre":"notebook","descripcion":"descripcion1","codigo":12345,"foto":"foto.jpg","precio":100,"stock":20}}]
