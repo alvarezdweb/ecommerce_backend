@@ -1,5 +1,11 @@
 # Backend Ecommerce.
 
+## Run Server
+~~~ 
+npm start
+~~~ 
+
+
 ## Ruta /productos
 
 ### GET /listar

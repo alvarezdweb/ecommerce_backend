@@ -15,7 +15,6 @@ export const create = (file, content) => {
 }
 
 export const read = async (file) => {
-    console.log(file);
     try {
         const data = await fs.promises.readFile(`./storage/${file}`, 'utf-8');
         const res = JSON.parse(data);

@@ -1,1 +1,0 @@
-[{"id":1,"timestamp":1624974601764,"nombte":"celular","descripcion":"iphone","codigo":12345,"foto":"img.jpg","precio":100,"stock":20}]
