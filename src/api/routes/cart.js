@@ -16,8 +16,8 @@ export default (app) => {
     });
 
     route.post('/agregar/:id_producto', async (req, res) => {
-        const newProduct = {id: req.params.id_producto, ...req.body};   
-        res.send(await cart.addItem(newProduct));
+        const productId = req.params.id_producto;   
+        res.send(await cart.addItem(productId));
     });
 
     route.delete('/borrar/:id', async (req, res) => {

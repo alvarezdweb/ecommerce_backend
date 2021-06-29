@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Products from "../../services/Products.js";
+import isAdmin from "../middlewares/isAdmin.js";
 
 const route = Router();
 const product = new Products();
@@ -15,18 +16,18 @@ export default (app) => {
         res.json(await product.getProducts(req.params.id))
     });
 
-    route.post('/agregar', async (req, res) => {
-        const newProduct = req.body;   
+    route.post('/agregar', isAdmin, async (req, res) => {
+        const newProduct = req.body.item;   
         res.send(await product.addProduct(newProduct));
     });
 
-    route.put('/actualizar/:id', async (req, res) => {
+    route.put('/actualizar/:id', isAdmin, async (req, res) => {
         const id = parseInt(req.params.id);
-        const updateData = { id: id, ...req.body };
+        const updateData = { id: id, ...req.body.item };
         res.json(await product.updateProduct(updateData));
     });
 
-    route.delete('/borrar/:id', async (req, res) => {
+    route.delete('/borrar/:id', isAdmin, async (req, res) => {
         const id = parseInt(req.params.id);
         res.json(await product.deleteProduct(id));
     });

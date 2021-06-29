@@ -26,13 +26,21 @@ class Cart {
         return this.#cartItems;
     }
 
-    async addItem(product) {
-        this.#cartItems = await read(this.#file);
-        const newItem = {id: this.#cartItems.length +1, timestamp: Date.now(), product: product}
-        this.#cartItems.push(newItem);
-        await write(this.#file, this.#cartItems);
+    async addItem(productId) {
 
-        return newItem;
+        this.#cartItems = await read(this.#file);
+        let products = await read('products.txt');
+
+        let product = products.filter(product => product.id == productId);
+        if(product.length > 0) {
+            const newItem = {id: this.#cartItems.length +1, timestamp: Date.now(), product: product[0]}
+            this.#cartItems.push(newItem);
+            await write(this.#file, this.#cartItems);
+
+            return newItem;
+        }
+
+        return { error: "producto no encontrado." }
     };
 
     async deleteItem(id) {
