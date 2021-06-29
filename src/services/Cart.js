@@ -26,21 +26,31 @@ class Cart {
         return this.#cartItems;
     }
 
-    async addItem(productId) {
+    async addItem(productId, cartId = 1) {
 
         this.#cartItems = await read(this.#file);
         let products = await read('products.txt');
 
         let product = products.filter(product => product.id == productId);
-        if(product.length > 0) {
-            const newItem = {id: this.#cartItems.length +1, timestamp: Date.now(), product: product[0]}
-            this.#cartItems.push(newItem);
-            await write(this.#file, this.#cartItems);
+        /**
+         * Hardcodeado a 1 carrito. Cuando el proyecto avance puede recibir
+         * por req.params.ID_CARRITO ?
+         */
+        const cart = this.#cartItems.filter( cart => cart.id === cartId );
 
-            return newItem;
+        if(cart.length === 0) {
+            cart.push({id: cartId, timestamp: Date.now(), products: []})
         }
 
-        return { error: "producto no encontrado." }
+        if(product.length === 0) {
+            return { error: "producto no encontrado." }
+        }
+
+        cart[0].products.push(product[0]);
+        this.#cartItems = cart;
+        await write(this.#file, this.#cartItems);
+
+        return cart[0];
     };
 
     async deleteItem(id) {
