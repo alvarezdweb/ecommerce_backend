@@ -21,7 +21,7 @@ export default (app) => {
     });
 
     route.delete('/borrar/:id', async (req, res) => {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         res.json(await cart.deleteItem(id));
     });
 }

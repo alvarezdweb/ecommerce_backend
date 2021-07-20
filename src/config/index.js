@@ -10,4 +10,7 @@ if (envFound.error) {
 
 export default {
     port: parseInt(process.env.PORT, 10),
+    url_local: process.env.URL_LOCAL,
+    url_atlas: process.env.URL_ATLAS,
+    persistence: process.env.PERSISTENCE
 };

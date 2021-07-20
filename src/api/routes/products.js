@@ -22,13 +22,13 @@ export default (app) => {
     });
 
     route.put('/actualizar/:id', isAdmin, async (req, res) => {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         const updateData = { id: id, ...req.body.item };
         res.json(await product.updateProduct(updateData));
     });
 
     route.delete('/borrar/:id', isAdmin, async (req, res) => {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         res.json(await product.deleteProduct(id));
     });
 }
