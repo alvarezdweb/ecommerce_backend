@@ -8,6 +8,10 @@ const product = new Products();
 export default (app) => {
     app.use('/productos', route);
 
+    route.get('/info', (req, res) => {
+        res.send('INFO OK!');
+    })
+
     route.get('/listar', async (req, res) => {
         res.json(await product.getProducts());
     });
